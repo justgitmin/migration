@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이버클라우드 Classic to VPC 마이그레이션 - 5일차</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="presentation.css">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-100">
+    <main id="presentation-container">
+
+        <!-- Slide 1: Title -->
+        <section class="presentation-slide bg-white flex flex-col justify-center items-center text-center">
+            <div class="p-8">
+                <div data-animate class="mb-4">
+                    <span class="text-lg font-semibold text-ncloud-green">네이버클라우드플랫폼 전문가 과정</span>
+                </div>
+                <h1 data-animate class="text-5xl md:text-6xl font-bold text-gray-800 leading-tight">Classic to VPC<br>마이그레이션</h1>
+                <p data-animate class="mt-8 text-2xl text-gray-600">5일차: VPC 환경에서의 운영 및 고도화</p>
+                <div data-animate class="mt-12 text-gray-500">2025. 07. 28</div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Day 5 Agenda -->
+        <section class="presentation-slide bg-gray-50 flex flex-col justify-center items-center">
+            <div class="w-full max-w-4xl mx-auto px-8">
+                <h2 data-animate class="text-4xl font-bold text-gray-800 mb-12 text-center">5일차 학습 로드맵: 운영과 고도화</h2>
+                <div class="space-y-4">
+                    <div data-animate class="flex items-start p-5 bg-white rounded-lg shadow-sm border transition-transform hover:scale-[1.02]">
+                        <i data-lucide="area-chart" class="w-10 h-10 text-ncloud-green mr-6 mt-1 shrink-0"></i>
+                        <div>
+                            <h3 class="font-bold text-xl text-gray-800">5.1 효율적인 모니터링 전략</h3>
+                            <p class="text-gray-600 mt-1">Cloud Log Analytics, Cloud Insight 활용 및 알림 체계 구축</p>
+                        </div>
+                    </div>
+                    <div data-animate class="flex items-start p-5 bg-white rounded-lg shadow-sm border transition-transform hover:scale-[1.02]">
+                        <i data-lucide="database-backup" class="w-10 h-10 text-ncloud-green mr-6 mt-1 shrink-0"></i>
+                        <div>
+                            <h3 class="font-bold text-xl text-gray-800">5.2 최적화된 백업 및 복구 전략</h3>
+                            <p class="text-gray-600 mt-1">스냅샷, Archive Storage를 활용한 데이터 보호 및 DR 훈련</p>
+                        </div>
+                    </div>
+                    <div data-animate class="flex items-start p-5 bg-white rounded-lg shadow-sm border transition-transform hover:scale-[1.02]">
+                        <i data-lucide="file-text" class="w-10 h-10 text-ncloud-green mr-6 mt-1 shrink-0"></i>
+                        <div>
+                            <h3 class="font-bold text-xl text-gray-800">5.3 결과 문서화 및 운영 관리</h3>
+                            <p class="text-gray-600 mt-1">최종 보고서, 아키텍처 구성도 등 필수 산출물 작성</p>
+                        </div>
+                    </div>
+                     <div data-animate class="flex items-start p-5 bg-white rounded-lg shadow-sm border transition-transform hover:scale-[1.02]">
+                        <i data-lucide="rocket" class="w-10 h-10 text-ncloud-green mr-6 mt-1 shrink-0"></i>
+                        <div>
+                            <h3 class="font-bold text-xl text-gray-800">5.4 운영 고도화 및 Q&A</h3>
+                            <p class="text-gray-600 mt-1">비용 최적화, Cloud Native 전환 로드맵 및 종합 Q&A</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Session 5.1 Title -->
+        <section class="presentation-slide bg-gray-800 text-white flex flex-col justify-center items-center text-center">
+            <div class="p-8">
+                <p data-animate class="text-2xl text-ncloud-green font-semibold">Session 5.1</p>
+                <h2 data-animate class="text-5xl md:text-6xl font-bold mt-2">효율적인 모니터링 전략</h2>
+                <p data-animate class="mt-6 text-2xl text-gray-300">문제가 되기 전에 먼저 발견하고 대응하기</p>
+            </div>
+        </section>
+
+        <!-- Slide 4: Monitoring Tools -->
+        <section class="presentation-slide bg-white layout-split items-center">
+            <div class="flex flex-col justify-center text-left p-12">
+                <h3 data-animate class="text-3xl font-bold text-gray-800 mb-8">네이버클라우드 모니터링 도구</h3>
+                <div data-animate class="mb-8">
+                    <h4 class="text-xl font-bold text-ncloud-green flex items-center"><i data-lucide="server-cog" class="w-6 h-6 mr-2"></i>Cloud Insight</h4>
+                    <p class="text-gray-600 mt-1">서버, DB 등 클라우드 자원의 성능 지표(CPU, Memory 등)를 수집, 조회하고 감시 규칙을 설정하는 서비스입니다.</p>
+                </div>
+                <div data-animate>
+                    <h4 class="text-xl font-bold text-ncloud-green flex items-center"><i data-lucide="files" class="w-6 h-6 mr-2"></i>Cloud Log Analytics</h4>
+                    <p class="text-gray-600 mt-1">애플리케이션 및 시스템 로그를 실시간으로 수집, 분석, 시각화하여 서비스 상태를 심층적으로 파악하는 서비스입니다.</p>
+                </div>
+            </div>
+            <div data-animate class="flex items-center justify-center p-8 bg-gray-50 h-full">
+                 <img src="https://images.unsplash.com/photo-1611117775350-ac39509672c7?q=80&w=1935&auto=format&fit=crop" class="rounded-lg shadow-xl object-cover w-full h-auto max-h-[80%]" alt="Monitoring dashboard abstract graphic">
+            </div>
+        </section>
+
+        <!-- Slide 5: Key Monitoring Metrics -->
+        <section class="presentation-slide bg-gray-50">
+            <div class="w-full max-w-5xl mx-auto px-8">
+                <h3 data-animate class="text-3xl font-bold text-center text-gray-800 mb-10">주요 서비스 핵심 모니터링 지표</h3>
+                <div data-animate class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg border shadow-sm">
+                        <h4 class="font-bold text-xl mb-4 text-center">Server</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-center"><i data-lucide="cpu" class="w-5 h-5 mr-3 text-ncloud-green"></i>CPU Usage: <span class="ml-auto font-mono text-gray-600">&gt; 80% (5min)</span></li>
+                            <li class="flex items-center"><i data-lucide="memory-stick" class="w-5 h-5 mr-3 text-ncloud-green"></i>Memory Usage: <span class="ml-auto font-mono text-gray-600">&gt; 90% (5min)</span></li>
+                            <li class="flex items-center"><i data-lucide="network" class="w-5 h-5 mr-3 text-ncloud-green"></i>Network I/O: <span class="ml-auto font-mono text-gray-600">Spike or Drop</span></li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg border shadow-sm">
+                        <h4 class="font-bold text-xl mb-4 text-center">Database</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-center"><i data-lucide="database" class="w-5 h-5 mr-3 text-ncloud-green"></i>Active Connections: <span class="ml-auto font-mono text-gray-600">&gt; Max Conn * 80%</span></li>
+                            <li class="flex items-center"><i data-lucide="clock" class="w-5 h-5 mr-3 text-ncloud-green"></i>Slow Queries: <span class="ml-auto font-mono text-gray-600">Count &gt; 10</span></li>
+                            <li class="flex items-center"><i data-lucide="hard-drive" class="w-5 h-5 mr-3 text-ncloud-green"></i>Storage Usage: <span class="ml-auto font-mono text-gray-600">&gt; 85%</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Slide 6: Session 5.2 Title -->
+        <section class="presentation-slide bg-cover bg-center" style="background-image: linear-gradient(rgba(20, 30, 40, 0.7), rgba(20, 30, 40, 0.7)), url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2070&auto=format&fit=crop');">
+            <div class="text-white text-center">
+                <p data-animate class="text-2xl text-ncloud-green font-semibold">Session 5.2</p>
+                <h2 data-animate class="text-5xl md:text-6xl font-bold mt-2">최적화된 백업 및 복구 전략</h2>
+                <p data-animate class="mt-6 text-2xl text-gray-300">안정적인 서비스 운영을 위한 최후의 보루</p>
+            </div>
+        </section>
+
+        <!-- Slide 7: Backup Flow -->
+        <section class="presentation-slide bg-white">
+            <div class="w-full max-w-6xl mx-auto px-8 text-center">
+                <h3 data-animate class="text-3xl font-bold text-gray-800 mb-16">자동화된 백업 정책 수립</h3>
+                <div data-animate class="flex flex-col md:flex-row items-center justify-around space-y-8 md:space-y-0">
+                    <div class="flex flex-col items-center w-48 text-center">
+                        <i data-lucide="server" class="w-20 h-20 text-ncloud-green"></i>
+                        <h4 class="mt-2 text-lg font-bold">운영 서버</h4>
+                        <p class="text-sm text-gray-600">Web/WAS/DB</p>
+                    </div>
+                    <i data-lucide="arrow-right" class="w-12 h-12 text-gray-400 transform md:rotate-0 rotate-90"></i>
+                    <div class="flex flex-col items-center w-48 text-center">
+                        <i data-lucide="camera" class="w-20 h-20 text-ncloud-green"></i>
+                        <h4 class="mt-2 text-lg font-bold">스냅샷 생성</h4>
+                        <p class="text-sm text-gray-600">일/주 단위 정기 수행</p>
+                    </div>
+                    <i data-lucide="arrow-right" class="w-12 h-12 text-gray-400 transform md:rotate-0 rotate-90"></i>
+                    <div class="flex flex-col items-center w-48 text-center">
+                        <i data-lucide="archive" class="w-20 h-20 text-ncloud-green"></i>
+                        <h4 class="mt-2 text-lg font-bold">Archive Storage</h4>
+                        <p class="text-sm text-gray-600">장기 보관 (3개월 이상)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: DR Scenario -->
+        <section class="presentation-slide bg-gray-50">
+            <div class="w-full max-w-6xl mx-auto px-8">
+                <h3 data-animate class="text-3xl font-bold text-center text-gray-800 mb-12">재해 복구(DR) 시나리오</h3>
+                <div data-animate class="grid md:grid-cols-2 gap-8 items-start">
+                    <div class="bg-white p-6 rounded-lg border border-blue-300 shadow-sm">
+                        <h4 class="font-bold text-xl text-blue-600 mb-4 text-center">평상시: Active Zone</h4>
+                        <div class="p-4 bg-blue-50 rounded-md text-center">서비스 정상 운영</div>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg border border-red-300 shadow-sm">
+                        <h4 class="font-bold text-xl text-red-600 mb-4 text-center">재해 발생 시: Standby Zone</h4>
+                        <div class="text-center space-y-2">
+                             <div class="p-2 bg-red-50 rounded-md">1. 재해 감지 및 선포</div>
+                             <i data-lucide="arrow-down" class="w-6 h-6 text-gray-400 mx-auto"></i>
+                             <div class="p-2 bg-red-50 rounded-md">2. 백업 데이터로 복구</div>
+                             <i data-lucide="arrow-down" class="w-6 h-6 text-gray-400 mx-auto"></i>
+                             <div class="p-2 bg-red-50 rounded-md">3. DNS 변경 및 서비스 전환</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: Session 5.3 Title -->
+        <section class="presentation-slide bg-ncloud-green text-white">
+            <div class="text-center">
+                <p data-animate class="text-2xl font-semibold opacity-80">Session 5.3</p>
+                <h2 data-animate class="text-5xl md:text-6xl font-bold mt-2">결과 문서화 및 운영 관리</h2>
+                <p data-animate class="mt-6 text-2xl opacity-90">체계적인 기록이 미래의 자산이 됩니다</p>
+            </div>
+        </section>
+        
+        <!-- Slide 10: Essential Documents -->
+        <section class="presentation-slide bg-white">
+            <div class="w-full max-w-6xl mx-auto px-8">
+                <h3 data-animate class="text-3xl font-bold text-center text-gray-800 mb-12">필수 산출물 양식</h3>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div data-animate class="p-6 border rounded-lg bg-gray-50/70 hover:shadow-lg transition-shadow">
+                        <i data-lucide="file-pie-chart" class="w-12 h-12 text-ncloud-green mx-auto mb-4"></i>
+                        <h4 class="text-xl font-bold text-gray-800">최종 결과 보고서</h4>
+                        <p class="text-gray-600 mt-2">프로젝트 목표, 과정, 결과, 교훈 등을 종합적으로 정리</p>
+                    </div>
+                    <div data-animate class="p-6 border rounded-lg bg-gray-50/70 hover:shadow-lg transition-shadow">
+                        <i data-lucide="network" class="w-12 h-12 text-ncloud-green mx-auto mb-4"></i>
+                        <h4 class="text-xl font-bold text-gray-800">신규 아키텍처 구성도</h4>
+                        <p class="text-gray-600 mt-2">VPC 환경의 네트워크, 서버, 서비스 구성을 시각적으로 표현</p>
+                    </div>
+                    <div data-animate class="p-6 border rounded-lg bg-gray-50/70 hover:shadow-lg transition-shadow">
+                        <i data-lucide="book-marked" class="w-12 h-12 text-ncloud-green mx-auto mb-4"></i>
+                        <h4 class="text-xl font-bold text-gray-800">운영 가이드</h4>
+                        <p class="text-gray-600 mt-2">장애 대응 절차, 정기 점검 항목 등 신규 환경 운영 노하우 정리</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 11: Architecture Diagram Example -->
+        <section class="presentation-slide bg-gray-50">
+             <div class="w-full max-w-4xl mx-auto px-8">
+                <h3 data-animate class="text-3xl font-bold text-center text-gray-800 mb-10">VPC 아키텍처 구성도 (예시)</h3>
+                <div data-animate class="bg-white rounded-xl shadow-lg border p-8">
+                    <div class="border-2 border-dashed border-gray-400 p-4 rounded-lg">
+                        <p class="font-bold text-gray-600">VPC (10.0.0.0/16)</p>
+                        <div class="grid grid-cols-3 gap-4 mt-4">
+                            <div class="border border-green-300 bg-green-50 p-4 rounded text-center">
+                                <p class="font-semibold">Web Subnet</p>
+                                <i data-lucide="server" class="w-10 h-10 mx-auto my-2 text-green-600"></i>
+                            </div>
+                            <div class="border border-blue-300 bg-blue-50 p-4 rounded text-center">
+                                <p class="font-semibold">WAS Subnet</p>
+                                <i data-lucide="server" class="w-10 h-10 mx-auto my-2 text-blue-600"></i>
+                            </div>
+                            <div class="border border-purple-300 bg-purple-50 p-4 rounded text-center">
+                                <p class="font-semibold">DB Subnet</p>
+                                <i data-lucide="database" class="w-10 h-10 mx-auto my-2 text-purple-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <!-- Slide 12: Session 5.4 Title -->
+        <section class="presentation-slide bg-gray-800 text-white layout-split items-center">
+            <div data-animate class="flex items-center justify-center p-8">
+                 <img src="https://images.unsplash.com/photo-1590959651373-a3db0f38a9b1?q=80&w=1974&auto=format&fit=crop" class="rounded-lg shadow-2xl object-cover" alt="Growth chart">
+            </div>
+            <div class="flex flex-col justify-center text-left p-8">
+                <p data-animate class="text-2xl text-ncloud-green font-semibold">Session 5.4</p>
+                <h2 data-animate class="text-5xl font-bold mt-2">운영 고도화 방향</h2>
+                <p data-animate class="mt-6 text-xl text-gray-300">마이그레이션은 끝이 아닌 새로운 시작</p>
+            </div>
+        </section>
+        
+        <!-- Slide 13: Advancement Roadmap -->
+        <section class="presentation-slide bg-white">
+            <div class="w-full max-w-6xl mx-auto px-8">
+                <h3 data-animate class="text-3xl font-bold text-center text-gray-800 mb-12">지속적인 개선 활동 로드맵</h3>
+                <div class="relative w-full">
+                    <div data-animate class="absolute left-0 top-1/2 w-full h-1 bg-gray-200"></div>
+                    <div data-animate class="relative flex justify-between">
+                        <div class="flex flex-col items-center w-1/4">
+                            <div class="w-16 h-16 bg-ncloud-green text-white rounded-full flex items-center justify-center z-10 text-xl font-bold">1</div>
+                            <h4 class="mt-4 font-bold text-center">안정화</h4>
+                            <p class="text-sm text-center text-gray-600">모니터링/백업 체계 확립</p>
+                        </div>
+                        <div class="flex flex-col items-center w-1/4">
+                            <div class="w-16 h-16 bg-ncloud-green text-white rounded-full flex items-center justify-center z-10 text-xl font-bold">2</div>
+                            <h4 class="mt-4 font-bold text-center">최적화</h4>
+                            <p class="text-sm text-center text-gray-600">비용, 성능, 보안 개선</p>
+                        </div>
+                        <div class="flex flex-col items-center w-1/4">
+                            <div class="w-16 h-16 bg-ncloud-green text-white rounded-full flex items-center justify-center z-10 text-xl font-bold">3</div>
+                            <h4 class="mt-4 font-bold text-center">현대화</h4>
+                            <p class="text-sm text-center text-gray-600">PaaS/SaaS 도입 검토</p>
+                        </div>
+                        <div class="flex flex-col items-center w-1/4">
+                            <div class="w-16 h-16 bg-ncloud-green text-white rounded-full flex items-center justify-center z-10 text-xl font-bold">4</div>
+                            <h4 class="mt-4 font-bold text-center">자동화</h4>
+                            <p class="text-sm text-center text-gray-600">CI/CD, IaC 도입</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 14: Wrap-up & Q&A -->
+        <section class="presentation-slide bg-gray-800 text-white">
+            <div class="w-full max-w-6xl mx-auto px-8 text-center">
+                <div data-animate>
+                    <h2 class="text-4xl font-bold mb-6">5일차 과정 요약</h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        오늘은 VPC 환경에서의 안정적인 운영을 위한 모니터링, 백업, 문서화 전략을 수립하고,
+                        지속적인 서비스 개선을 위한 고도화 방향에 대해 학습했습니다.
+                    </p>
+                </div>
+                <div data-animate class="w-full h-px bg-white/20 my-12"></div>
+                <div data-animate>
+                    <h3 class="text-5xl font-bold text-ncloud-green mb-4">종합 Q&A</h3>
+                    <p class="text-xl text-gray-300">전체 과정에 대해 궁금한 점을 질문해주세요.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 15: Thank You -->
+        <section class="presentation-slide bg-ncloud-green text-white flex flex-col justify-center items-center text-center">
+            <div data-animate>
+                <h2 class="text-6xl font-bold">수고하셨습니다</h2>
+                <p class="mt-6 text-2xl opacity-90">성공적인 VPC 전환을 응원합니다!</p>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="presentation-navigation" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-sm transition-opacity duration-300">
+        <button id="presentation-prev-slide" class="p-1.5 rounded-full hover:bg-white/20 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed">
+            <i data-lucide="chevron-left" class="w-5 h-5 text-white/90"></i>
+        </button>
+        <div id="presentation-dots" class="flex gap-1.5 items-center">
+        </div>
+        <button id="presentation-next-slide" class="p-1.5 rounded-full hover:bg-white/20 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed">
+            <i data-lucide="chevron-right" class="w-5 h-5 text-white/90"></i>
+        </button>
+    </div>
+
+    <script src="presentation.js"></script>
+</body>
+</html>
