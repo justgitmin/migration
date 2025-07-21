@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이버클라우드 Classic to VPC 마이그레이션 전문가 과정 - 3일차</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="presentation.css">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-100">
+    <main id="presentation-container">
+
+        <!-- Slide 1: Title -->
+        <section class="presentation-slide bg-white flex flex-col justify-center items-center text-center">
+            <div class="p-8">
+                <div data-animate class="mb-4">
+                    <span class="text-lg font-semibold text-ncloud-green">네이버클라우드플랫폼 전문가 과정</span>
+                </div>
+                <h1 data-animate class="text-5xl md:text-6xl font-bold text-gray-800 leading-tight">Classic to VPC<br>마이그레이션</h1>
+                <p data-animate class="mt-8 text-2xl text-gray-600">3일차: 데이터 마이그레이션 및 네트워크 심화</p>
+                <div data-animate class="mt-12 text-gray-500">2025. 07. 24</div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Day 3 Agenda -->
+        <section class="presentation-slide bg-gray-50 flex flex-col justify-center items-center">
+            <div class="w-full max-w-4xl mx-auto px-8">
+                <h2 data-animate class="text-4xl font-bold text-gray-800 mb-12 text-center">3일차 학습 내용: 데이터 & 네트워크</h2>
+                <div class="space-y-6">
+                    <div data-animate class="flex items-start p-6 bg-white rounded-lg shadow-sm border">
+                        <i data-lucide="route" class="w-10 h-10 text-ncloud-green mr-6 mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-xl text-gray-800">세션 3.1: Classic Path 개념 및 활용</h3>
+                            <p class="text-gray-600 mt-1">Classic과 VPC를 연결하는 비공개 통로, Classic Path를 학습합니다.</p>
+                        </div>
+                    </div>
+                    <div data-animate class="flex items-start p-6 bg-white rounded-lg shadow-sm border">
+                        <i data-lucide="database" class="w-10 h-10 text-ncloud-green mr-6 mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-xl text-gray-800">세션 3.2: Database Migration Service (DMS) 활용 실습</h3>
+                            <p class="text-gray-600 mt-1">DMS를 이용한 무중단 DB 마이그레이션 절차를 실습합니다.</p>
+                        </div>
+                    </div>
+                    <div data-animate class="flex items-start p-6 bg-white rounded-lg shadow-sm border">
+                        <i data-lucide="wrench" class="w-10 h-10 text-ncloud-green mr-6 mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-xl text-gray-800">세션 3.3: 수동 데이터 마이그레이션 기법</h3>
+                            <p class="text-gray-600 mt-1">DMS가 적합하지 않은 경우를 위한 수동 이전 방법을 알아봅니다.</p>
+                        </div>
+                    </div>
+                     <div data-animate class="flex items-start p-6 bg-white rounded-lg shadow-sm border">
+                        <i data-lucide="shield-check" class="w-10 h-10 text-ncloud-green mr-6 mt-1"></i>
+                        <div>
+                            <h3 class="font-bold text-xl text-gray-800">세션 3.4: VPC 네트워크 및 보안 설정 실습</h3>
+                            <p class="text-gray-600 mt-1">ACG와 NACL을 활용한 계층형 보안 아키텍처를 구축합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Session 3.1 Title -->
+        <section class="presentation-slide bg-gray-800 text-white flex flex-col justify-center items-center text-center">
+            <div class="p-8">
+                <p data-animate class="text-2xl text-ncloud-green font-semibold">Session 3.1</p>
+                <h2 data-animate class="text-5xl md:text-6xl font-bold mt-2">Classic Path 개념 및 활용</h2>
+                <p data-animate class="mt-6 text-2xl text-gray-300">단계적 마이그레이션을 위한 연결 통로</p>
+            </div>
+        </section>
+        
+        <!-- Slide 4: What is Classic Path? -->
+        <section class="presentation-slide bg-white">
+            <div class="w-full max-w-6xl mx-auto px-8 text-center">
+                <h3 data-animate class="text-3xl font-bold text-gray-800 mb-2">Classic Path란?</h3>
+                <p data-animate class="text-xl text-gray-600 mb-12">Classic 환경과 VPC 환경을 사설 통신으로 연결하는 서비스입니다.</p>
+                <div data-animate class="relative flex justify-center items-center space-x-8">
+                    <div class="p-8 bg-red-50 rounded-xl border-2 border-red-300 shadow-md">
+                        <i data-lucide="server" class="w-24 h-24 mx-auto text-red-500"></i>
+                        <p class="mt-4 font-bold text-lg">Classic 서버</p>
+                    </div>
+                    
+                    <div class="flex flex-col items-center">
+                        <div class="font-semibold text-gray-700 mb-2">Private 통신</div>
+                        <i data-lucide="arrow-left-right" class="w-16 h-16 text-ncloud-green"></i>
+                        <div class="mt-2 p-2 bg-green-100 text-ncloud-green text-sm rounded-md font-bold">Classic Path</div>
+                    </div>
+
+                    <div class="p-8 bg-green-50 rounded-xl border-2 border-ncloud-green shadow-md">
+                        <div class="relative inline-block">
+                           <i data-lucide="lock" class="text-green-500 w-8 h-8 absolute -top-4 -right-4"></i>
+                           <i data-lucide="server" class="w-24 h-24 mx-auto text-green-600"></i>
+                        </div>
+                        <p class="mt-4 font-bold text-lg">VPC 서버</p>
+                    </div>
+                </div>
+                <p data-animate class="mt-10 text-lg text-gray-700"><strong>활용 사례:</strong> Classic의 DB를 그대로 사용하면서 VPC 환경에 신규 웹 서버를 구성하는 경우</p>
+            </div>
+        </section>
+
+        <!-- Slide 5: Classic Path Configuration -->
+        <section class="presentation-slide bg-gray-50">
+            <div class="w-full max-w-5xl mx-auto px-8">
+                <h3 data-animate class="text-3xl font-bold text-center text-gray-800 mb-12">Classic Path 설정 절차</h3>
+                <ol data-animate class="space-y-6">
+                    <li class="flex items-center bg-white p-5 rounded-lg border shadow-sm">
+                        <span class="flex items-center justify-center w-12 h-12 bg-ncloud-green text-white font-bold text-2xl rounded-full mr-6">1</span>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-800">Classic Path 신청</h4>
+                            <p class="text-gray-600">콘솔에서 연결할 Classic Zone과 VPC를 지정하여 서비스를 신청합니다.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-center bg-white p-5 rounded-lg border shadow-sm">
+                        <span class="flex items-center justify-center w-12 h-12 bg-ncloud-green text-white font-bold text-2xl rounded-full mr-6">2</span>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-800">VPC 라우팅 테이블 설정</h4>
+                            <p class="text-gray-600">Classic 서버 대역으로 향하는 트래픽(Destination)의 Target을 Classic Path로 지정합니다.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-center bg-white p-5 rounded-lg border shadow-sm">
+                        <span class="flex items-center justify-center w-12 h-12 bg-ncloud-green text-white font-bold text-2xl rounded-full mr-6">3</span>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-800">양방향 보안 정책 설정</h4>
+                            <p class="text-gray-600">Classic의 ACG와 VPC의 ACG/NACL에서 상대방 대역과의 통신을 허용합니다.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Slide 6: Session 3.2 Title -->
+        <section class="presentation-slide bg-gray-800 text-white flex flex-col justify-center items-center text-center">
+             <div class="p-8">
+                <p data-animate class="text-2xl text-ncloud-green font-semibold">Session 3.2</p>
+                <h2 data-animate class="text-5xl md:text-6xl font-bold mt-2">DMS 활용 실습</h2>
+                <p data-animate class="mt-6 text-2xl text-gray-300">Database Migration Service</p>
+            </div>
+        </section>
+
+        <!-- Slide 7: DMS Overview -->
+        <section class="presentation-slide bg-white">
+            <div class="w-full max-w-6xl mx-auto px-8">
+                <h3 data-animate class="text-3xl font-bold text-center text-gray-800 mb-12">Database Migration Service (DMS) 란?</h3>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div data-animate class="bg-gray-50 p-8 rounded-xl border">
+                        <i data-lucide="zap-off" class="w-16 h-16 text-ncloud-green mx-auto mb-4"></i>
+                        <h4 class="text-xl font-bold text-gray-800">최소한의 중단</h4>
+                        <p class="text-gray-600 mt-2">초기 데이터 복제 후 변경분(CDC)을 지속적으로 동기화하여 서비스 중단을 최소화합니다.</p>
+                    </div>
+                    <div data-animate class="bg-gray-50 p-8 rounded-xl border">
+                        <i data-lucide="arrow-left-right" class="w-16 h-16 text-ncloud-green mx-auto mb-4"></i>
+                        <h4 class="text-xl font-bold text-gray-800">이기종 마이그레이션</h4>
+                        <p class="text-gray-600 mt-2">MySQL to MySQL 뿐만 아니라 Oracle to MySQL 등 다른 종류의 DB 간 이전도 지원합니다.</p>
+                    </div>
+                    <div data-animate class="bg-gray-50 p-8 rounded-xl border">
+                        <i data-lucide="settings-2" class="w-16 h-16 text-ncloud-green mx-auto mb-4"></i>
+                        <h4 class="text-xl font-bold text-gray-800">간편한 관리</h4>
+                        <p class="text-gray-600 mt-2">콘솔에서 몇 번의 클릭만으로 마이그레이션 작업을 생성하고 모니터링할 수 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: DMS Migration Process -->
+        <section class="presentation-slide bg-gray-50">
+            <div class="w-full max-w-6xl mx-auto px-8 text-center">
+                <h3 data-animate class="text-3xl font-bold text-gray-800 mb-12">DMS 마이그레이션 절차</h3>
+                <div data-animate class="flex flex-col md:flex-row items-center justify-around space-y-8 md:space-y-0">
+                    <div class="flex flex-col items-center w-52">
+                        <i data-lucide="server" class="w-20 h-20 text-red-500"></i>
+                        <h4 class="mt-2 text-lg font-bold">1. Source DB</h4>
+                        <p class="text-sm text-gray-600">Classic 환경의 원본 DB</p>
+                    </div>
+                    <i data-lucide="arrow-right" class="w-12 h-12 text-gray-400 transform md:rotate-0 rotate-90"></i>
+                    <div class="flex flex-col items-center w-52">
+                        <i data-lucide="plug-zap" class="w-20 h-20 text-blue-500"></i>
+                        <h4 class="mt-2 text-lg font-bold">2. Endpoint 설정</h4>
+                        <p class="text-sm text-gray-600">Source/Target DB 접속 정보 등록</p>
+                    </div>
+                    <i data-lucide="arrow-right" class="w-12 h-12 text-gray-400 transform md:rotate-0 rotate-90"></i>
+                    <div class="flex flex-col items-center w-52">
+                        <i data-lucide="list-checks" class="w-20 h-20 text-purple-500"></i>
+                        <h4 class="mt-2 text-lg font-bold">3. Migration Task 생성</h4>
+                        <p class="text-sm text-gray-600">이전 유형(Full+CDC) 선택 및 실행</p>
+                    </div>
+                    <i data-lucide="arrow-right" class="w-12 h-12 text-gray-400 transform md:rotate-0 rotate-90"></i>
+                    <div class="flex flex-col items-center w-52">
+                        <i data-lucide="database" class="w-20 h-20 text-green-600"></i>
+                        <h4 class="mt-2 text-lg font-bold">4. Target DB</h4>
+                        <p class="text-sm text-gray-600">VPC 환경의 대상 DB</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Slide 9: DMS Lab Scenario -->
+        <section class="presentation-slide bg-white">
+             <div class="w-full max-w-5xl mx-auto px-8">
+                <h3 data-animate class="text-3xl font-bold text-center text-gray-800 mb-10">실습: Classic MySQL → VPC Cloud DB for MySQL</h3>
+                <div data-animate class="bg-gray-800 text-white rounded-xl shadow-lg p-6 font-mono text-base relative">
+                    <div class="absolute top-3 right-4 flex space-x-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <p class="text-gray-400 mb-2"># Task 생성 시나리오</p>
+                    <p><span class="text-cyan-400">Task Name:</span> <span class="text-yellow-300">classic-to-vpc-db-migration</span></p>
+                    <p><span class="text-cyan-400">Source Endpoint:</span> <span class="text-yellow-300">Classic-MySQL-Endpoint</span></p>
+                    <p><span class="text-cyan-400">Target Endpoint:</span> <span class="text-yellow-300">VPC-CloudDB-Endpoint</span></p>
+                    <p><span class="text-cyan-400">Migration Type:</span> <span class="text-yellow-300">Full load and Change Data Capture(CDC)</span></p>
+                    <p class="text-gray-400 mt-4"># CDC를 통해 원본 DB의 변경 사항이 Target에 실시간으로 반영됩니다.</p>
+                </div>
+                <div data-animate class="mt-8 text-center text-gray-600">
+                    <p>콘솔 화면을 통해 Source/Target Endpoint를 생성하고, 위 시나리오에 따라 Migration Task를 생성 및 실행합니다.</p>
+                </div>
+             </div>
+        </section>
+
+        <!-- Slide 10: Session 3.3 Title -->
+        <section class="presentation-slide bg-gray-800 text-white flex flex-col justify-center items-center text-center">
+            <div class="p-8">
+                <p data-animate class="text-2xl text-ncloud-green font-semibold">Session 3.3</p>
+                <h2 data-animate class="text-5xl md:text-6xl font-bold mt-2">수동 데이터 마이그레이션</h2>
+                <p data-animate class="mt-6 text-2xl text-gray-300">파일 및 DB 이전 기법</p>
+            </div>
+        </section>
+
+        <!-- Slide 11: Manual Migration Methods -->
+        <section class="presentation-slide bg-white">
+            <div class="w-full max-w-6xl mx-auto px-8">
+                <h3 data-animate class="text-3xl font-bold text-center text-gray-800 mb-12">수동 마이그레이션 도구 및 기법</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div data-animate class="p-8 border rounded-lg bg-gray-50">
+                        <h4 class="text-2xl font-bold text-gray-800 mb-4 flex items-center"><i data-lucide="file-text" class="w-8 h-8 mr-3 text-ncloud-green"></i>파일/디렉터리 이전</h4>
+                        <ul class="space-y-4">
+                            <li><strong class="font-mono text-ncloud-green">rsync:</strong> 증분 백업 및 동기화에 최적. SSH 기반으로 안전하게 전송.</li>
+                            <li><strong class="font-mono text-ncloud-green">scp:</strong> Secure Copy. 간단한 파일 복사에 용이.</li>
+                            <li><strong class="font-mono text-ncloud-green">Object Storage:</strong> 대용량 파일, 비정형 데이터를 임시 저장 후 VPC 서버에서 다운로드.</li>
+                        </ul>
+                    </div>
+                    <div data-animate class="p-8 border rounded-lg bg-gray-50">
+                        <h4 class="text-2xl font-bold text-gray-800 mb-4 flex items-center"><i data-lucide="database" class="w-8 h-8 mr-3 text-ncloud-green"></i>데이터베이스 이전</h4>
+                         <ul class="space-y-4">
+                            <li><strong class="font-mono text-ncloud-green">mysqldump:</strong> MySQL/MariaDB의 논리적 백업(덤프) 생성 후 복원.</li>
+                            <li><strong class="font-mono text-ncloud-green">pg_dump:</strong> PostgreSQL의 논리적 백업 생성 후 복원.</li>
+                             <li><strong>DB 벤더 제공 도구:</strong> Oracle Data Pump 등 각 DB가 제공하는 전용 마이그레이션 유틸리티 활용.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Slide 12: Manual Migration Example -->
+        <section class="presentation-slide bg-gray-50">
+            <div class="w-full max-w-4xl mx-auto px-8">
+                <h3 data-animate class="text-3xl font-bold text-center text-gray-800 mb-10">예시: rsync와 mysqldump 명령어</h3>
+                <div data-animate class="space-y-6">
+                    <div class="bg-white rounded-lg p-6 border shadow-sm">
+                        <h4 class="font-bold text-lg mb-2 text-gray-700">rsync를 이용한 웹 소스 동기화</h4>
+                        <div class="code-block">rsync -avz -e "ssh -i mykey.pem" /var/www/html/ root@VPC_IP:/var/www/html/</div>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 border shadow-sm">
+                        <h4 class="font-bold text-lg mb-2 text-gray-700">mysqldump를 이용한 DB 이전</h4>
+                        <p class="text-sm text-gray-500 mb-2 font-mono"># 1. Classic 서버에서 DB 덤프</p>
+                        <div class="code-block">mysqldump -u root -p [DB_NAME] > dump.sql</div>
+                        <p class="text-sm text-gray-500 mt-4 mb-2 font-mono"># 2. VPC 서버에서 DB 복원</p>
+                        <div class="code-block">mysql -u root -p [DB_NAME] < dump.sql</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 13: Session 3.4 Title -->
+        <section class="presentation-slide bg-gray-800 text-white flex flex-col justify-center items-center text-center">
+            <div class="p-8">
+                <p data-animate class="text-2xl text-ncloud-green font-semibold">Session 3.4</p>
+                <h2 data-animate class="text-5xl md:text-6xl font-bold mt-2">VPC 네트워크 및 보안</h2>
+                <p data-animate class="mt-6 text-2xl text-gray-300">설정 실습</p>
+            </div>
+        </section>
+
+        <!-- Slide 14: Lab: 3-Tier Security -->
+        <section class="presentation-slide bg-white">
+            <div class="w-full max-w-6xl mx-auto px-8 text-center">
+                <h3 data-animate class="text-3xl font-bold text-gray-800 mb-10">실습: 3-Tier 아키텍처 보안 설정</h3>
+                <div data-animate class="flex flex-col md:flex-row justify-center items-center md:space-x-4 space-y-4 md:space-y-0">
+                    <span class="font-semibold text-lg">Internet</span>
+                    <i data-lucide="arrow-right" class="w-8 h-8 text-gray-400 transform md:rotate-0 rotate-90"></i>
+                    <div class="p-4 border-2 border-dashed border-ncloud-green rounded-lg">
+                        <span class="font-semibold text-ncloud-green">VPC</span>
+                        <div class="mt-2 flex flex-col md:flex-row justify-center items-center md:space-x-4 space-y-4 md:space-y-0 bg-green-50/50 p-4 rounded-md">
+                            <div class="p-4 border rounded-lg bg-white w-52"><i data-lucide="globe" class="w-12 h-12 mx-auto mb-2 text-blue-500"></i>Web Subnet</div>
+                            <i data-lucide="arrow-right" class="w-8 h-8 text-gray-400 transform md:rotate-0 rotate-90"></i>
+                            <div class="p-4 border rounded-lg bg-white w-52"><i data-lucide="cpu" class="w-12 h-12 mx-auto mb-2 text-purple-500"></i>WAS Subnet</div>
+                            <i data-lucide="arrow-right" class="w-8 h-8 text-gray-400 transform md:rotate-0 rotate-90"></i>
+                            <div class="p-4 border rounded-lg bg-white w-52"><i data-lucide="database" class="w-12 h-12 mx-auto mb-2 text-orange-500"></i>DB Subnet</div>
+                        </div>
+                    </div>
+                </div>
+                 <p data-animate class="mt-8 text-lg text-gray-700">각 Subnet에 대한 <strong>Network ACL</strong>과 각 Tier의 서버에 대한 <strong>ACG</strong>를 설정하여<br>허용된 트래픽만 통과시키는 계층형 보안을 구축합니다.</p>
+            </div>
+        </section>
+        
+        <!-- Slide 15: NACL Configuration -->
+        <section class="presentation-slide bg-gray-50">
+            <div class="w-full max-w-5xl mx-auto px-8">
+                <h3 data-animate class="text-3xl font-bold text-center text-gray-800 mb-10">Network ACL (Subnet 방화벽) 설정 예시</h3>
+                <div data-animate class="bg-white rounded-xl shadow-lg overflow-hidden border">
+                    <table class="w-full text-left text-base">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="p-4 font-bold text-gray-700">Subnet</th>
+                                <th class="p-4 font-bold text-gray-700">Inbound 규칙</th>
+                                <th class="p-4 font-bold text-gray-700">Outbound 규칙</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y">
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-4 font-semibold">Web Subnet</td>
+                                <td class="p-4 text-gray-600">Source(0.0.0.0/0), Port(80, 443) <strong>Allow</strong></td>
+                                <td class="p-4 text-gray-600">모든 트래픽 <strong>Allow</strong></td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-4 font-semibold">WAS Subnet</td>
+                                <td class="p-4 text-gray-600">Source(Web Subnet 대역), Port(8080) <strong>Allow</strong></td>
+                                <td class="p-4 text-gray-600">Destination(DB Subnet 대역), Port(3306) <strong>Allow</strong></td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-4 font-semibold">DB Subnet</td>
+                                <td class="p-4 text-gray-600">Source(WAS Subnet 대역), Port(3306) <strong>Allow</strong></td>
+                                <td class="p-4 text-gray-600">모든 트래픽 <strong>Deny</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 16: ACG Configuration -->
+        <section class="presentation-slide bg-white">
+            <div class="w-full max-w-5xl mx-auto px-8">
+                <h3 data-animate class="text-3xl font-bold text-center text-gray-800 mb-10">ACG (서버 방화벽) 설정 예시</h3>
+                <div data-animate class="space-y-4">
+                    <div class="bg-gray-50 border rounded-lg p-4">
+                        <h4 class="font-semibold text-lg text-gray-800">Web Server ACG</h4>
+                        <p class="text-gray-600"><strong>Inbound:</strong> Source(0.0.0.0/0), Port(80, 443) 허용</p>
+                    </div>
+                    <div class="bg-gray-50 border rounded-lg p-4">
+                        <h4 class="font-semibold text-lg text-gray-800">WAS Server ACG</h4>
+                        <p class="text-gray-600"><strong>Inbound:</strong> Source(<span class="font-mono text-ncloud-green">Web Server ACG</span>), Port(8080) 허용</p>
+                    </div>
+                    <div class="bg-gray-50 border rounded-lg p-4">
+                        <h4 class="font-semibold text-lg text-gray-800">DB Server ACG</h4>
+                        <p class="text-gray-600"><strong>Inbound:</strong> Source(<span class="font-mono text-ncloud-green">WAS Server ACG</span>), Port(3306) 허용</p>
+                    </div>
+                </div>
+                <p data-animate class="mt-8 text-center text-gray-700">ACG는 <span class="font-bold">Stateful</span>이므로 Outbound 규칙을 별도로 설정할 필요가 없으며, 그룹을 소스로 지정하여 유연하게 관리할 수 있습니다.</p>
+            </div>
+        </section>
+
+        <!-- Slide 17: Wrap-up & Day 4 Preview -->
+        <section class="presentation-slide bg-ncloud-green text-white">
+            <div class="w-full max-w-6xl mx-auto px-8">
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div data-animate>
+                        <h2 class="text-4xl font-bold mb-6">3일차 요약</h2>
+                        <ul class="space-y-4 text-xl">
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="w-7 h-7 mr-3 mt-1 shrink-0"></i><span><strong>Classic Path</strong>를 이용한 하이브리드 구성</span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="w-7 h-7 mr-3 mt-1 shrink-0"></i><span><strong>DMS</strong>를 활용한 자동화된 DB 이전</span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="w-7 h-7 mr-3 mt-1 shrink-0"></i><span><strong>수동 마이그레이션</strong> 기법 이해</span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="w-7 h-7 mr-3 mt-1 shrink-0"></i><span><strong>NACL/ACG</strong>를 통한 계층형 보안 구축</span></li>
+                        </ul>
+                    </div>
+                    <div data-animate class="bg-white/20 p-8 rounded-xl text-center">
+                        <p class="text-2xl font-semibold mb-2">4일차 예고</p>
+                        <h3 class="text-4xl font-bold mb-4">검증 및 최적화</h3>
+                        <i data-lucide="search-check" class="w-24 h-24 my-6 mx-auto"></i>
+                        <p class="text-lg">마이그레이션된 서비스의 기능/성능 검증, 트러블슈팅 사례 연구, 그리고 PaaS를 활용한 서비스 확장을 학습합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 18: Q&A -->
+        <section class="presentation-slide bg-gray-800 text-white flex flex-col justify-center items-center text-center">
+            <div data-animate>
+                <h2 class="text-6xl font-bold">Q&A</h2>
+                <p class="mt-6 text-2xl text-gray-300">궁금한 점을 질문해주세요.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="presentation-navigation" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-sm transition-opacity duration-300">
+        <button id="presentation-prev-slide" class="p-1.5 rounded-full hover:bg-white/20 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed">
+            <i data-lucide="chevron-left" class="w-5 h-5 text-white/90"></i>
+        </button>
+        
+        <div id="presentation-dots" class="flex gap-1.5 items-center">
+        </div>
+        
+        <button id="presentation-next-slide" class="p-1.5 rounded-full hover:bg-white/20 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed">
+            <i data-lucide="chevron-right" class="w-5 h-5 text-white/90"></i>
+        </button>
+    </div>
+
+    <script src="presentation.js"></script>
+</body>
+</html>
