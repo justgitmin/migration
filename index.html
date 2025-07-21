@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이버클라우드 Classic to VPC 마이그레이션 전문가 과정 - 1일차</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="presentation.css">
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-100">
+    <main id="presentation-container">
+
+        <!-- Slide 1: Title -->
+        <section class="presentation-slide bg-white flex flex-col justify-center items-center text-center">
+            <div class="p-8">
+                <div data-animate class="mb-4">
+                    <span class="text-lg font-semibold text-ncloud-green">네이버클라우드플랫폼 전문가 과정</span>
+                </div>
+                <h1 data-animate class="text-5xl md:text-6xl font-bold text-gray-800 leading-tight">Classic to VPC<br>마이그레이션</h1>
+                <p data-animate class="mt-8 text-2xl text-gray-600">1일차: 분석 및 계획 수립</p>
+                <div data-animate class="mt-12 text-gray-500">2025. 07. 22</div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Course Introduction -->
+        <section class="presentation-slide bg-gray-50 flex flex-col justify-center items-center">
+            <div class="w-full max-w-5xl mx-auto px-8">
+                <h2 data-animate class="text-4xl font-bold text-gray-800 mb-4">과정 소개 및 1일차 학습 목표</h2>
+                <p data-animate class="text-xl text-gray-600 mb-12">성공적인 마이그레이션의 첫 단추, 정확한 분석과 체계적인 계획에서 시작합니다.</p>
+                
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div data-animate class="bg-white p-8 rounded-lg shadow-sm border">
+                        <h3 class="font-bold text-xl text-ncloud-green mb-3 flex items-center"><i data-lucide="map" class="w-6 h-6 mr-2"></i>전체 과정 로드맵</h3>
+                        <p class="text-gray-700">
+                            본 과정은 Classic 환경을 VPC로 이전하는 전 과정을 다룹니다. 아키텍처 분석부터 마이그레이션 실습, 그리고 운영 최적화까지 체계적으로 학습합니다.
+                        </p>
+                    </div>
+                    <div data-animate class="bg-white p-8 rounded-lg shadow-sm border">
+                        <h3 class="font-bold text-xl text-ncloud-green mb-3 flex items-center"><i data-lucide="target" class="w-6 h-6 mr-2"></i>1일차 학습 목표</h3>
+                        <p class="text-gray-700">
+                            Classic과 VPC의 근본적인 차이를 이해하고, 현재 환경을 분석하여 마이그레이션 계획을 수립하는 능력을 배양합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Session 1.1 Title -->
+        <section class="presentation-slide bg-gray-800 text-white flex flex-col justify-center items-center text-center">
+            <div class="p-8">
+                <p data-animate class="text-2xl text-ncloud-green font-semibold">Session 1.1</p>
+                <h2 data-animate class="text-5xl md:text-6xl font-bold mt-2">Classic vs VPC</h2>
+                <p data-animate class="mt-6 text-2xl text-gray-300">아키텍처 심층 비교</p>
+            </div>
+        </section>
+
+        <!-- Slide 4: Network Architecture Comparison -->
+        <section class="presentation-slide bg-white">
+            <div class="w-full max-w-6xl mx-auto px-8">
+                <h3 data-animate class="text-3xl font-bold text-center text-gray-800 mb-12">네트워크 구조: 공유 vs 논리적 격리</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div data-animate class="border-2 border-red-300 rounded-xl p-6 bg-red-50/50">
+                        <h4 class="text-2xl font-bold text-red-600 mb-4 text-center">Classic 환경</h4>
+                        <p class="text-center text-gray-600 mb-6">모든 사용자가 공유하는 거대한 네트워크</p>
+                        <div class="aspect-video bg-white rounded-lg p-4 flex items-center justify-center relative shadow-inner">
+                            <i data-lucide="server" class="text-red-400 w-16 h-16 opacity-50 absolute top-1/3 left-1/4"></i>
+                            <i data-lucide="server" class="text-blue-400 w-16 h-16 opacity-50 absolute bottom-1/4 right-1/4"></i>
+                            <i data-lucide="users" class="text-yellow-500 w-20 h-20"></i>
+                            <p class="absolute bottom-2 text-sm text-gray-500">물리적 분리 없이 논리적 구역만 존재</p>
+                        </div>
+                    </div>
+                    <div data-animate class="border-2 border-green-400 rounded-xl p-6 bg-green-50/50">
+                        <h4 class="text-2xl font-bold text-ncloud-green mb-4 text-center">VPC 환경</h4>
+                        <p class="text-center text-gray-600 mb-6">사용자 전용 독립 가상 네트워크</p>
+                        <div class="aspect-video bg-white rounded-lg p-4 flex items-center justify-center relative shadow-inner">
+                            <div class="w-full h-full border-2 border-dashed border-ncloud-green rounded-md flex items-center justify-center">
+                                <i data-lucide="lock" class="text-green-500 w-20 h-20"></i>
+                            </div>
+                            <p class="absolute bottom-2 text-sm text-gray-500">완벽하게 격리된 나만의 공간</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Slide 5: Feature Comparison Table -->
+        <section class="presentation-slide bg-gray-50">
+            <div class="w-full max-w-6xl mx-auto px-8">
+                <h3 data-animate class="text-3xl font-bold text-center text-gray-800 mb-10">Classic vs. VPC 주요 기능 비교</h3>
+                <div data-animate class="bg-white rounded-xl shadow-lg overflow-hidden border">
+                    <table class="w-full text-left text-lg">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="p-5 font-bold text-gray-700 w-1/4">항목</th>
+                                <th class="p-5 font-bold text-gray-700 w-3/8">Classic</th>
+                                <th class="p-5 font-bold text-ncloud-green w-3/8">VPC</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y">
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-5 font-semibold">네트워크 구조</td>
+                                <td class="p-5 text-gray-600">공유 네트워크</td>
+                                <td class="p-5 text-gray-800 font-medium">논리적 격리 네트워크 <span class="text-ncloud-green">(보안성↑)</span></td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-5 font-semibold">IP 할당</td>
+                                <td class="p-5 text-gray-600">자동 할당 (Public IP 중심)</td>
+                                <td class="p-5 text-gray-800 font-medium">사용자 정의 사설 IP 대역 <span class="text-ncloud-green">(유연성↑)</span></td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-5 font-semibold">보안 모델</td>
+                                <td class="p-5 text-gray-600">ACG (서버 단위)</td>
+                                <td class="p-5 text-gray-800 font-medium">ACG + Network ACL (계층형 보안)</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-5 font-semibold">리전 간 통신</td>
+                                <td class="p-5 text-gray-600">제한적</td>
+                                <td class="p-5 text-gray-800 font-medium">VPC Peering으로 유연하게 연결</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Security Model -->
+        <section class="presentation-slide bg-white">
+            <div class="w-full max-w-6xl mx-auto px-8 text-center">
+                <h3 data-animate class="text-3xl font-bold text-gray-800 mb-2">계층형 보안 모델: ACG + Network ACL</h3>
+                <p data-animate class="text-xl text-gray-600 mb-12">VPC는 서브넷과 서버 단위에서 2중으로 트래픽을 제어합니다.</p>
+                <div data-animate class="relative flex justify-center items-center">
+                    <div class="flex items-center space-x-4 md:space-x-8">
+                         <div class="text-center">
+                            <i data-lucide="cloud" class="w-20 h-20 text-blue-500 mx-auto"></i>
+                            <p class="mt-2 font-semibold">Internet</p>
+                        </div>
+
+                        <i data-lucide="arrow-right" class="w-12 h-12 text-gray-300 shrink-0"></i>
+
+                        <div class="text-center border-4 border-ncloud-green p-6 rounded-2xl bg-green-50">
+                             <i data-lucide="shield" class="w-20 h-20 text-ncloud-green mx-auto"></i>
+                            <p class="mt-2 font-bold text-lg">Network ACL</p>
+                            <p class="text-sm text-gray-600">(Subnet Level)</p>
+                            <span class="text-xs font-mono bg-green-200 text-green-800 px-2 py-0.5 rounded-full mt-2 inline-block">Stateless</span>
+                        </div>
+
+                        <i data-lucide="arrow-right" class="w-12 h-12 text-gray-300 shrink-0"></i>
+                        
+                        <div class="text-center border-4 border-gray-400 border-dashed p-6 rounded-2xl bg-gray-50">
+                            <i data-lucide="shield-check" class="w-20 h-20 text-gray-500 mx-auto"></i>
+                            <p class="mt-2 font-bold text-lg">ACG</p>
+                            <p class="text-sm text-gray-600">(Server Level)</p>
+                            <span class="text-xs font-mono bg-gray-200 text-gray-800 px-2 py-0.5 rounded-full mt-2 inline-block">Stateful</span>
+                        </div>
+                        
+                        <i data-lucide="arrow-right" class="w-12 h-12 text-gray-300 shrink-0"></i>
+
+                        <div class="text-center">
+                            <i data-lucide="server" class="w-20 h-20 text-gray-700 mx-auto"></i>
+                            <p class="mt-2 font-semibold">Server</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Session 1.2 Title -->
+        <section class="presentation-slide bg-ncloud-green text-white flex flex-col justify-center items-center text-center">
+             <div class="p-8">
+                <p data-animate class="text-2xl font-semibold opacity-80">Session 1.2</p>
+                <h2 data-animate class="text-5xl md:text-6xl font-bold mt-2">AS-IS 환경 분석</h2>
+                <p data-animate class="mt-6 text-2xl opacity-90">마이그레이션 대상 정의</p>
+            </div>
+        </section>
+
+        <!-- Slide 8: AS-IS Analysis Methodology -->
+        <section class="presentation-slide bg-gray-50">
+            <div class="w-full max-w-6xl mx-auto px-8">
+                <h3 data-animate class="text-3xl font-bold text-center text-gray-800 mb-12">체계적인 AS-IS 환경 분석 방법론</h3>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div data-animate class="bg-white p-8 rounded-xl shadow-md border hover:shadow-lg transition-shadow">
+                        <i data-lucide="clipboard-list" class="w-16 h-16 text-ncloud-green mx-auto mb-4"></i>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-2">1. 자원 인벤토리 작성</h4>
+                        <p class="text-gray-600">서버, 스토리지, 네트워크, DB 등 모든 자원의 목록과 사양을 문서화합니다.</p>
+                    </div>
+                    <div data-animate class="bg-white p-8 rounded-xl shadow-md border hover:shadow-lg transition-shadow">
+                        <i data-lucide="network" class="w-16 h-16 text-ncloud-green mx-auto mb-4"></i>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-2">2. 의존성 분석</h4>
+                        <p class="text-gray-600">서버 간 통신 흐름, DB 연결, 외부 서비스 연동 관계를 파악하여 의존성 맵을 작성합니다.</p>
+                    </div>
+                    <div data-animate class="bg-white p-8 rounded-xl shadow-md border hover:shadow-lg transition-shadow">
+                        <i data-lucide="shield-question" class="w-16 h-16 text-ncloud-green mx-auto mb-4"></i>
+                        <h4 class="text-2xl font-bold text-gray-800 mb-2">3. 보안 및 정책 분석</h4>
+                        <p class="text-gray-600">현재 적용된 ACG 규칙, 방화벽 정책, 계정 관리 등 보안 현황을 점검합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: Prioritization -->
+        <section class="presentation-slide bg-white">
+             <div class="w-full max-w-5xl mx-auto px-8">
+                <h3 data-animate class="text-3xl font-bold text-center text-gray-800 mb-10">마이그레이션 우선순위 결정 매트릭스</h3>
+                <div data-animate class="relative w-full aspect-square max-w-2xl mx-auto bg-gray-50 rounded-lg p-8 border">
+                    <!-- Y-Axis -->
+                    <div class="absolute -left-8 top-0 bottom-0 flex flex-col justify-between items-center transform -translate-x-full">
+                        <span class="transform -rotate-90 origin-center translate-y-12 font-semibold text-gray-600">낮음</span>
+                        <span class="font-bold text-lg transform -rotate-90 origin-center text-gray-700">비즈니스 중요도</span>
+                        <span class="transform -rotate-90 origin-center -translate-y-12 font-semibold text-gray-600">높음</span>
+                        <div class="absolute top-0 bottom-0 right-0 w-px bg-gray-300"></div>
+                        <i data-lucide="arrow-up" class="absolute -top-4 w-5 h-5 text-gray-400"></i>
+                    </div>
+                    <!-- X-Axis -->
+                    <div class="absolute -bottom-8 left-0 right-0 flex justify-between items-center transform translate-y-full">
+                        <span class="font-semibold text-gray-600">낮음</span>
+                         <span class="font-bold text-lg text-gray-700">마이그레이션 복잡도</span>
+                        <span class="font-semibold text-gray-600">높음</span>
+                        <div class="absolute left-0 right-0 top-0 h-px bg-gray-300"></div>
+                        <i data-lucide="arrow-right" class="absolute -right-4 w-5 h-5 text-gray-400"></i>
+                    </div>
+
+                    <!-- Quadrants -->
+                    <div class="grid grid-cols-2 grid-rows-2 w-full h-full gap-4">
+                        <div class="flex items-center justify-center text-center p-4 bg-yellow-100/60 rounded-lg border border-yellow-300"><div><h4 class="font-bold text-yellow-800">2. 전략적 접근</h4><p class="text-sm text-yellow-700">철저한 계획 후 진행</p></div></div>
+                        <div class="flex items-center justify-center text-center p-4 bg-green-100/60 rounded-lg border border-green-400"><div><h4 class="font-bold text-green-800">1. Quick Wins</h4><p class="text-sm text-green-700">우선 마이그레이션</p></div></div>
+                        <div class="flex items-center justify-center text-center p-4 bg-gray-100/60 rounded-lg border border-gray-300"><div><h4 class="font-bold text-gray-800">4. 후순위 / 재검토</h4><p class="text-sm text-gray-700">ROI 분석 후 결정</p></div></div>
+                        <div class="flex items-center justify-center text-center p-4 bg-blue-100/60 rounded-lg border border-blue-300"><div><h4 class="font-bold text-blue-800">3. 기회적 접근</h4><p class="text-sm text-blue-700">리소스 여유 시 진행</p></div></div>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <!-- Slide 10: Session 1.3 Title -->
+        <section class="presentation-slide bg-gray-800 text-white flex flex-col justify-center items-center text-center">
+            <div class="p-8">
+                <p data-animate class="text-2xl text-ncloud-green font-semibold">Session 1.3</p>
+                <h2 data-animate class="text-5xl md:text-6xl font-bold mt-2">마이그레이션 전략</h2>
+                <p data-animate class="mt-6 text-2xl text-gray-300">및 기본 계획 수립</p>
+            </div>
+        </section>
+
+        <!-- Slide 11: 6Rs -->
+        <section class="presentation-slide bg-white">
+            <div class="w-full max-w-6xl mx-auto px-8">
+                <h3 data-animate class="text-3xl font-bold text-center text-gray-800 mb-12">대표적인 마이그레이션 전략 (The 6Rs)</h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div data-animate class="p-6 border rounded-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <i data-lucide="truck" class="w-12 h-12 text-ncloud-green mb-4"></i>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">Rehost (Lift & Shift)</h4>
+                        <p class="text-gray-600">기존 환경을 그대로 VPC로 옮깁니다. 가장 빠르지만 클라우드 이점 활용은 제한적입니다.</p>
+                    </div>
+                    <div data-animate class="p-6 border rounded-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 bg-ncloud-green/10 border-ncloud-green">
+                        <i data-lucide="package-search" class="w-12 h-12 text-ncloud-green mb-4"></i>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">Re-platform</h4>
+                        <p class="text-gray-600">OS, DB 등 일부 구성요소를 클라우드 관리형 서비스로 변경하며 이전합니다.</p>
+                    </div>
+                    <div data-animate class="p-6 border rounded-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+                        <i data-lucide="construction" class="w-12 h-12 text-ncloud-green mb-4"></i>
+                        <h4 class="text-xl font-bold text-gray-800 mb-2">Re-architect</h4>
+                        <p class="text-gray-600">애플리케이션을 클라우드 네이티브하게 재설계합니다. 효과는 극대화되나 많은 노력이 필요합니다.</p>
+                    </div>
+                </div>
+                 <p data-animate class="text-center mt-10 text-gray-500">기타 전략: Repurchase (SaaS로 전환), Retire (폐기), Retain (유지)</p>
+            </div>
+        </section>
+
+        <!-- Slide 12: Strategy Comparison -->
+        <section class="presentation-slide bg-gray-50">
+            <div class="w-full max-w-6xl mx-auto px-8">
+                <h3 data-animate class="text-3xl font-bold text-center text-gray-800 mb-10">전략별 장단점 비교</h3>
+                <div data-animate class="overflow-x-auto">
+                    <table class="w-full min-w-max bg-white rounded-xl shadow-lg border text-base">
+                        <thead>
+                            <tr class="bg-gray-100 text-left">
+                                <th class="p-4 font-bold text-gray-700 w-1/5">전략</th>
+                                <th class="p-4 font-bold text-gray-700 w-2/5">장점</th>
+                                <th class="p-4 font-bold text-gray-700 w-2/5">단점</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y">
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-4 font-semibold">Lift & Shift</td>
+                                <td class="p-4 text-gray-600">신속성, 저비용, 낮은 기술 장벽</td>
+                                <td class="p-4 text-gray-600">클라우드 최적화 미흡, 레거시 문제 잔존</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="p-4 font-semibold">Re-platforming</td>
+                                <td class="p-4 text-gray-600">일부 클라우드 혜택 활용, 성능/안정성 개선</td>
+                                <td class="p-4 text-gray-600">중간 수준의 시간/비용, 호환성 테스트 필요</td>
+                            </tr>
+                             <tr class="hover:bg-gray-50">
+                                <td class="p-4 font-semibold">Re-architecting</td>
+                                <td class="p-4 text-gray-600">클라우드 이점 극대화, 높은 확장성/유연성</td>
+                                <td class="p-4 text-gray-600">높은 시간/비용, 높은 기술 전문성 요구</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 13: Plan Template -->
+        <section class="presentation-slide bg-white">
+            <div class="w-full max-w-5xl mx-auto px-8">
+                <h3 data-animate class="text-3xl font-bold text-center text-gray-800 mb-10">마이그레이션 기본 계획 수립 (Template)</h3>
+                <div data-animate class="bg-gray-50 p-8 rounded-lg border space-y-6">
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-700 flex items-center"><i data-lucide="box-select" class="w-6 h-6 mr-3 text-ncloud-green"></i>1. 프로젝트 범위 (Scope)</h4>
+                        <ul class="list-disc list-inside mt-2 text-gray-600 pl-4">
+                            <li>마이그레이션 대상 시스템: [예: 그룹웨어 웹/WAS, 인사 DB]</li>
+                            <li>제외 대상 시스템: [예: 사내 개발 서버]</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-gray-700 flex items-center"><i data-lucide="calendar-days" class="w-6 h-6 mr-3 text-ncloud-green"></i>2. 주요 일정 (Timeline)</h4>
+                        <ul class="list-disc list-inside mt-2 text-gray-600 pl-4">
+                            <li>분석 및 계획 수립: [YYYY.MM.DD ~ YYYY.MM.DD]</li>
+                            <li>PoC 및 테스트: [YYYY.MM.DD ~ YYYY.MM.DD]</li>
+                            <li>실제 마이그레이션 및 전환: [YYYY.MM.DD]</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="text-xl font-bold text-gray-700 flex items-center"><i data-lucide-="alert-triangle" class="w-6 h-6 mr-3 text-ncloud-green"></i>3. 리스크 관리 (Risk Management)</h4>
+                        <ul class="list-disc list-inside mt-2 text-gray-600 pl-4">
+                            <li>예상 리스크: [예: 서비스 중단, 데이터 유실, 성능 저하]</li>
+                            <li>대응 방안: [예: 사전 백업, 롤백 계획 수립, 충분한 성능 테스트]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 14: Wrap-up -->
+        <section class="presentation-slide bg-ncloud-green text-white">
+            <div class="w-full max-w-6xl mx-auto px-8">
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div data-animate>
+                        <h2 class="text-4xl font-bold mb-6">1일차 요약</h2>
+                        <ul class="space-y-4 text-xl">
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="w-7 h-7 mr-3 mt-1 shrink-0"></i><span><strong>Classic vs. VPC</strong> 아키텍처 차이 이해</span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="w-7 h-7 mr-3 mt-1 shrink-0"></i><span><strong>AS-IS 환경 분석</strong> 및 대상 정의 방법론</span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle-2" class="w-7 h-7 mr-3 mt-1 shrink-0"></i><span><strong>마이그레이션 전략</strong> 및 기본 계획 수립</span></li>
+                        </ul>
+                    </div>
+                    <div data-animate class="bg-white/20 p-8 rounded-xl text-center">
+                        <p class="text-2xl font-semibold mb-2">2일차 예고</p>
+                        <h3 class="text-4xl font-bold mb-4">본격적인 실습의 시작</h3>
+                        <i data-lucide="server-cog" class="w-24 h-24 my-6 mx-auto"></i>
+                        <p class="text-lg">Classic 서버 이미지 생성부터 VPC 환경에 복제하고 서버를 생성하는 전 과정을 직접 실습합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 15: Q&A -->
+        <section class="presentation-slide bg-gray-800 text-white flex flex-col justify-center items-center text-center">
+            <div data-animate>
+                <h2 class="text-6xl font-bold">Q&A</h2>
+                <p class="mt-6 text-2xl text-gray-300">궁금한 점을 질문해주세요.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="presentation-navigation" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-sm transition-opacity duration-300">
+        <button id="presentation-prev-slide" class="p-1.5 rounded-full hover:bg-white/20 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed">
+            <i data-lucide="chevron-left" class="w-5 h-5 text-white/90"></i>
+        </button>
+        
+        <div id="presentation-dots" class="flex gap-1.5 items-center">
+        </div>
+        
+        <button id="presentation-next-slide" class="p-1.5 rounded-full hover:bg-white/20 transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed">
+            <i data-lucide="chevron-right" class="w-5 h-5 text-white/90"></i>
+        </button>
+    </div>
+
+    <script src="presentation.js"></script>
+</body>
+</html>
